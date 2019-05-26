@@ -1,0 +1,13 @@
+const t = setInterval(move,10);
+    let pos = this.state.pos;
+    const box = document.getElementById('son');
+    function move(){
+      if(pos>=500){
+        clearInterval(t);
+      }
+      else{
+      pos+=5;
+      box.style.left = pos + 'px';
+      
+      }
+    }
