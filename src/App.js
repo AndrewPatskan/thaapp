@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import sonic from './sonic.png';
 import './App.css';
+import KeyHandler, { KEYPRESS } from 'react-key-handler';
 
 class App extends Component {
   constructor(props){
@@ -14,13 +15,24 @@ class App extends Component {
       backpos: 0
     }
   };
+  componentDidMount(){
+    const mess = document.createElement('h7');
+      const node = document.createTextNode('I\'m Fonic, Sonic\'s retarded brother');
+      mess.appendChild(node);
+      const div = document.getElementById('road');
+      div.appendChild(mess);
+      setTimeout(diss,5000);
+      function diss(){
+        div.removeChild(mess);
+      }
+  }
   infinity(){
     setInterval(move,50);
     let backk = 0;
     function move(){
-          backk -=10;
-          const imagge = document.getElementById('road');
-          imagge.style.backgroundPosition = backk + 'px';
+      backk -=10;
+      const imagge = document.getElementById('road');
+      imagge.style.backgroundPosition = backk + 'px';
     }
   }
   jump(){
@@ -32,8 +44,8 @@ class App extends Component {
           clearInterval(t);
         }
         else{
-        pos+=10;
-        box.style.top = pos + 'px';
+          pos+=10;
+          box.style.top = pos + 'px';
         }
       }
     }
@@ -73,11 +85,26 @@ class App extends Component {
     return (
       <div id='container'>
         <div className="App" id='road'>
-            <img src={sonic} className="App-logo" id='son' alt="logo" />
+          <img src={sonic} className="fonic" id='son' alt="fonic" />
         </div>
-        <button id='btn' onClick={this.jump} >jump</button>
-        <button id='btn' onClick={this.goright} >right</button>
-        <button id='btn' onClick={this.goleft} >left</button>
+        <h7>jump (w)</h7>
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue = 'w'
+          onKeyHandle={this.jump}
+        />
+        <h7>right/nitro (d)</h7>
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue = 'd'
+          onKeyHandle={this.goright}
+        />
+        <h7>left/nitro (a)</h7>
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue = 'a'
+          onKeyHandle={this.goleft}
+        />
         <button id='btn' onClick={this.infinity} >infinity run</button>
       </div>
     );

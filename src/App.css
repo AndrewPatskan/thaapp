@@ -1,4 +1,4 @@
-.App-logo {
+.fonic {
   height: 100px;
   pointer-events: none;
   position: absolute;
@@ -19,9 +19,13 @@
   background-image: url('2.jpg');
 }
 
-#btn {
+#btn, h7 {
   display: block;
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
+  border: 0;
+  height: 35px;
+  width: 110px;
+  outline: none;
 }
